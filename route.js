@@ -16,5 +16,6 @@ router.get(
   middleware.rateNullRequest,
   rateRouter.getAveragePrice
 );
+router.post('/rates', rateRouter.insertRates);
 
 module.exports = router;

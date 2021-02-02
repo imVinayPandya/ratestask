@@ -26,7 +26,9 @@ app.use('*', (req, res, next) => {
 // handle unknown errors here
 app.use((error, _req, res, _next) => {
   logger.error(error);
-  return res.status(500).send({ message: 'Internal ServerError' });
+  const message =
+    error && error.message ? error.message : 'Internal ServerError';
+  return res.status(500).send({ message });
 });
 
 module.exports = app;

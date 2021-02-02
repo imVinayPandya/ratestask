@@ -1,5 +1,23 @@
 const sql = require('sql-template-strings');
 
+exports.insertRates = (origin, destination, price, dateFrom, dateTo) => {
+  // @NOTE: Are we storing duplicate values in this table for same day and same price?
+  // if no then we can create unique key and we can user UPSERT instead of INSERT
+  // we can use orig_code, dest_code, day for creating unique key
+  return sql`
+    insert into prices(orig_code, dest_code, price, day)
+    -- generate series of rows date_from to date_to
+    select ${origin}, ${destination}, ${price}, series.day
+    from (
+      select
+        to_char(day::DATE, 'YYYY-MM-DD')::DATE as day
+      from 
+        generate_series(${dateFrom}::DATE , ${dateTo}::DATE, interval '1 day') day
+    ) series
+    returning *
+  `;
+};
+
 exports.getAveragePrice = (
   origin,
   destination,
@@ -7,6 +25,9 @@ exports.getAveragePrice = (
   dateTo,
   is_null = false
 ) => {
+  // ref: https://www.postgresqltutorial.com/postgresql-recursive-query/
+  // ref: https://dzone.com/articles/understanding-recursive-queries-in-postgres
+
   // check if user want to return null for average_price
   const dynamic_query = is_null
     ? sql`case
