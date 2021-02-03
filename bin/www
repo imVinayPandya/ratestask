@@ -5,14 +5,13 @@
  */
 require('dotenv-safe').config();
 require('./init'); // To avoid manual setup
+const http = require('http');
+const config = require('config');
+
 const app = require('../app');
 const logger = require('../utils/logger');
-const http = require('http');
 
-/**
- * Normalize a port into a number, string, or false.
- */
-
+// Normalize a port into a number, string, or false.
 const normalizePort = (val) => {
   const port = parseInt(val, 10);
 
@@ -29,23 +28,13 @@ const normalizePort = (val) => {
   return false;
 };
 
-/**
- * Get port from environment and store in Express.
- */
-
-const port = normalizePort(process.env.PORT || '3000');
+// Get port from environment and store in Express.
+const port = normalizePort(config.port || '3000');
 app.set('port', port);
-
-/**
- * Create HTTP server.
- */
 
 const server = http.createServer(app);
 
-/**
- * Event listener for HTTP server "error" event.
- */
-
+// Event listener for HTTP server "error" event.
 const onError = (error) => {
   if (error.syscall !== 'listen') {
     throw error;
@@ -67,10 +56,6 @@ const onError = (error) => {
       throw error;
   }
 };
-
-/**
- * Listen on provided port, on all network interfaces.
- */
 
 server.listen(port);
 server.on('error', onError);

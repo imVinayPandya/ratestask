@@ -1,9 +1,8 @@
 const got = require('got');
+const config = require('config');
 
 exports.getLatestExchangeCurrencyRates = async () => {
-  // https://openexchangerates.org/api/latest.json?app_id=d1c9192f651443ba999418c91e79b86b
-  const endpoint = `${process.env.OPEN_EXCH_API_URL}/latest.json?app_id=${process.env.OPEN_EXCH_APP_ID}`;
-
+  const endpoint = `${config.openExchangeRates.apiEndpoint}/latest.json?app_id=${config.openExchangeRates.appId}`;
   const { rates } = await got(endpoint).json();
   return rates;
 };
