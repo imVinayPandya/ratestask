@@ -54,12 +54,10 @@ module.exports = {
   // forceCoverageMatch: [],
 
   // A path to a module which exports an async function that is triggered once before all test suites
-  globalSetup:
-    __dirname + '/node_modules/@databases/pg-test/jest/globalSetup.js',
+  // globalSetup:
 
   // A path to a module which exports an async function that is triggered once after all test suites
-  globalTeardown:
-    __dirname + '/node_modules/@databases/pg-test/jest/globalTeardown.js',
+  // globalTeardown:
 
   // A set of global variables that need to be available in all test environments
   // globals: {},

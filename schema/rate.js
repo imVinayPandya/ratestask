@@ -28,13 +28,17 @@ const getRateSchema = {
 };
 
 const postRateSchema = {
-  ...getRateSchema,
+  origin_code: getRateSchema.origin,
+  destination_code: getRateSchema.destination,
+  date_from: getRateSchema.date_from,
+  date_to: getRateSchema.date_to,
   price: Joi.number().required().messages({
-    'number.required': 'Price is required field',
-    'number.base': 'Price must be number',
+    'any.required': 'Price is required field',
+    'any.base': 'Price must be number',
   }),
-  currency: Joi.string().optional().messages({
-    'string.base': 'Currency must be string',
+  currency: Joi.string().required().messages({
+    'any.base': 'Currency must be string',
+    'any.required': 'Currency is required field',
   }),
 };
 

@@ -1,4 +1,5 @@
 const winston = require('winston');
+const config = require('config');
 
 const { createLogger, format, transports } = winston;
 const { combine, timestamp, printf, colorize } = format;
@@ -17,6 +18,7 @@ const levels = {
 
 const logger = createLogger({
   levels,
+  silent: config.disableLogger,
   format: combine(
     colorize(),
     timestamp({ format: 'MM-DD-YY HH:mm:ss' }),

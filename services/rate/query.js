@@ -1,13 +1,19 @@
 const sql = require('sql-template-strings');
 
-exports.insertRates = (origin, destination, price, dateFrom, dateTo) => {
+exports.insertRates = (
+  originCode,
+  destinationCode,
+  price,
+  dateFrom,
+  dateTo
+) => {
   // @NOTE: Are we storing duplicate values in this table for same day and same price?
   // if no then we can create unique key and we can user UPSERT instead of INSERT
   // we can use orig_code, dest_code, day for creating unique key
   return sql`
     insert into prices(orig_code, dest_code, price, day)
     -- generate series of rows date_from to date_to
-    select ${origin}, ${destination}, ${price}, series.day
+    select ${originCode}, ${destinationCode}, ${price}, series.day
     from (
       select
         to_char(day::DATE, 'YYYY-MM-DD')::DATE as day
