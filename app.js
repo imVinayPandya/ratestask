@@ -5,7 +5,7 @@ const morgan = require('morgan');
 const uuid = require('uuid');
 const config = require('config');
 const requestIp = require('request-ip');
-const createError = require('http-errors');
+const createHttpError = require('http-errors');
 
 const logger = require('./utils/logger');
 const route = require('./route');
@@ -35,7 +35,7 @@ app.use('/', route);
 
 // 404 route
 app.all('/*', (req) => {
-  throw createError(404, `Cannot ${req.method.toUpperCase()} ${req.path}`);
+  throw createHttpError(404, `Cannot ${req.method.toUpperCase()} ${req.path}`);
 });
 
 // handle unknown errors here
@@ -76,7 +76,7 @@ app.use((err, req, res, _next) => {
     }
   }
 
-  const keys = ['user', 'req', 'statusCode', 'message', 'stack'];
+  const keys = ['req', 'statusCode', 'message', 'stack'];
   const formattedConsoleMessage = `Unhandled Error:\n${keys
     .map((key) => `  ${key}: ${consoleMessage[key]}`)
     .join('\n')}`;

@@ -1,4 +1,4 @@
-const createError = require('http-errors');
+const createHttpError = require('http-errors');
 
 const dbQueries = require('./query');
 const db = require('../../utils/db');
@@ -21,14 +21,14 @@ exports.insertRates = async (req, res) => {
     if (rates[currency])
       price = Math.ceil(Number.parseFloat(price / rates[currency]));
     else
-      throw createError(
+      throw createHttpError(
         400,
         `${currency} is not supported or Invalid currency`
       );
   }
 
   if (price <= 1)
-    throw createError(
+    throw createHttpError(
       400,
       `${currency} to USD conversation is ${price},  Your price is very low.`
     );

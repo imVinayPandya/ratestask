@@ -1,7 +1,7 @@
 module.exports = {
   environment: process.env.NODE_ENV,
   port: process.env.PORT,
-  includeErrorStackTrace: true,
+  includeErrorStackTrace: false,
   morganFormat:
     ':method :url HTTP/:http-version :status :res[content-length] :referrer :remote-addr - :remote-user :user-agent :ip',
   db: {
@@ -14,5 +14,12 @@ module.exports = {
   openExchangeRates: {
     apiEndpoint: process.env.OPEN_EXCH_API_ENDPOINT,
     appId: process.env.OPEN_EXCH_APP_ID,
+  },
+  joi: {
+    validationOption: {
+      abortEarly: true, //  False will include all errors
+      allowUnknown: true, // ignore unknown properties
+      stripUnknown: true, // remove unknown properties
+    },
   },
 };
