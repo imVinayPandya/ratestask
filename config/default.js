@@ -10,17 +10,17 @@ module.exports = {
     port: process.env.DB_PORT,
     user: process.env.DB_USER,
     password: process.env.DB_PASS,
-    database: process.env.DB_NAME,
+    database: process.env.DB_NAME
   },
   openExchangeRates: {
     apiEndpoint: process.env.OPEN_EXCH_API_ENDPOINT,
-    appId: process.env.OPEN_EXCH_APP_ID,
+    appId: process.env.OPEN_EXCH_APP_ID
   },
   joi: {
     validationOption: {
       abortEarly: true, //  False will include all errors
       allowUnknown: true, // ignore unknown properties
-      stripUnknown: true, // remove unknown properties
-    },
-  },
+      stripUnknown: true // remove unknown properties
+    }
+  }
 };

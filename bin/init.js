@@ -41,7 +41,7 @@ const dbInit = async () => {
         $$ LANGUAGE plpgsql;
     `
     )
-    .catch((error) => {
+    .catch(error => {
       logger.error(`Error while creating db function 'get_all_port'`);
       logger.error(error);
       process.exit(1);

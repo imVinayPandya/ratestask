@@ -7,7 +7,7 @@ const pg = new Pool({
   user: config.db.user,
   password: config.db.password,
   database: config.db.database,
-  max: 20, // max pool size
+  max: 20 // max pool size
 });
 
 module.exports = pg;

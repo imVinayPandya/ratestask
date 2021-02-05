@@ -1,3 +1,3 @@
 module.exports = {
-  includeErrorStackTrace: true,
+  includeErrorStackTrace: true
 };

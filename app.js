@@ -21,8 +21,8 @@ app.use((req, _res, next) => {
   next();
 });
 
-morgan.token('id', (req) => req.id);
-morgan.token('ip', (req) => requestIp.getClientIp(req));
+morgan.token('id', req => req.id);
+morgan.token('ip', req => requestIp.getClientIp(req));
 
 app.use(morgan(config.morganFormat, { stream: logger.stream }));
 app.use(express.json());
@@ -34,7 +34,7 @@ app.use(cookieParser());
 app.use('/', route);
 
 // 404 route
-app.all('/*', (req) => {
+app.all('/*', req => {
   throw createHttpError(404, `Cannot ${req.method.toUpperCase()} ${req.path}`);
 });
 
@@ -43,14 +43,14 @@ app.use((err, req, res, _next) => {
   const errorResponse = {
     error: true,
     message: 'Unknown Error',
-    statusCode: 500,
+    statusCode: 500
   };
 
   // create a message to log to the console
   const consoleMessage = {
     req: `${req.method} ${req.protocol}://${req.get('host')}${req.originalUrl}`,
     message: 'Unknown Error',
-    statusCode: 500,
+    statusCode: 500
   };
 
   let message = err && err.message;
@@ -78,7 +78,7 @@ app.use((err, req, res, _next) => {
 
   const keys = ['req', 'statusCode', 'message', 'stack'];
   const formattedConsoleMessage = `Unhandled Error:\n${keys
-    .map((key) => `  ${key}: ${consoleMessage[key]}`)
+    .map(key => `  ${key}: ${consoleMessage[key]}`)
     .join('\n')}`;
   logger.error(formattedConsoleMessage);
 

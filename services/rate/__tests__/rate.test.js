@@ -13,7 +13,7 @@ describe('Rates api: success', function () {
         origin: 'CNSGH',
         destination: 'north_europe_main',
         date_from: '2016-01-01',
-        date_to: '2016-01-10',
+        date_to: '2016-01-10'
       })
       .expect(200);
 
@@ -21,8 +21,8 @@ describe('Rates api: success', function () {
       expect.arrayContaining([
         expect.objectContaining({
           day: expect.any(String),
-          average_price: expect.any(Number),
-        }),
+          average_price: expect.any(Number)
+        })
       ])
     );
   });
@@ -34,7 +34,7 @@ describe('Rates api: success', function () {
         origin: 'CNSGH',
         destination: 'north_europe_main',
         date_from: '2016-01-01',
-        date_to: '2016-01-10',
+        date_to: '2016-01-10'
       })
       .expect(200);
 
@@ -42,8 +42,8 @@ describe('Rates api: success', function () {
       expect.arrayContaining([
         expect.objectContaining({
           day: expect.any(String),
-          average_price: expect.any(Number || null),
-        }),
+          average_price: expect.any(Number || null)
+        })
       ])
     );
   });
@@ -57,7 +57,7 @@ describe('Rates api: success', function () {
         date_from: '2020-01-01',
         date_to: '2020-01-10',
         price: '250',
-        currency: 'AFN',
+        currency: 'AFN'
       })
       .expect(201);
 
@@ -67,8 +67,8 @@ describe('Rates api: success', function () {
           orig_code: expect.any(String),
           dest_code: expect.any(String),
           day: expect.any(String),
-          price: expect.any(Number),
-        }),
+          price: expect.any(Number)
+        })
       ])
     );
   });
@@ -82,7 +82,7 @@ describe('Get /rates api: With no records in response', function () {
         origin: 'CNSGH',
         destination: 'north_europe_main',
         date_from: '2001-01-01',
-        date_to: '2001-01-10',
+        date_to: '2001-01-10'
       })
       .expect(200);
 
@@ -96,7 +96,7 @@ describe('Get /rates api: With no records in response', function () {
         origin: 'CNSGH',
         destination: 'north_europe_main',
         date_from: '2000-01-01',
-        date_to: '2000-01-10',
+        date_to: '2000-01-10'
       })
       .expect(200);
 
@@ -111,7 +111,7 @@ describe('Get /rates api: validation check', function () {
       .query({
         destination: 'north_europe_main',
         date_from: '2016-01-01',
-        date_to: '2016-01-10',
+        date_to: '2016-01-10'
       })
       .expect(400);
 
@@ -128,7 +128,7 @@ describe('Get /rates api: validation check', function () {
       .query({
         origin: 'CNSGH',
         date_from: '2016-01-01',
-        date_to: '2016-01-10',
+        date_to: '2016-01-10'
       })
       .expect(400);
 
@@ -145,7 +145,7 @@ describe('Get /rates api: validation check', function () {
       .query({
         origin: 'CNSGH',
         destination: 'north_europe_main',
-        date_to: '2016-01-10',
+        date_to: '2016-01-10'
       })
       .expect(400);
 
@@ -162,7 +162,7 @@ describe('Get /rates api: validation check', function () {
       .query({
         origin: 'CNSGH',
         destination: 'north_europe_main',
-        date_from: '2016-01-01',
+        date_from: '2016-01-01'
       })
       .expect(400);
 
@@ -180,7 +180,7 @@ describe('Get /rates api: validation check', function () {
         origin: 'CNSGH',
         destination: 'north_europe_main',
         date_from: '2016-31-01',
-        date_to: '2016-01-10',
+        date_to: '2016-01-10'
       })
       .expect(400);
 
@@ -198,7 +198,7 @@ describe('Get /rates api: validation check', function () {
         origin: 'CNSGH',
         destination: 'north_europe_main',
         date_from: '2016-01-01',
-        date_to: '2016-31-10',
+        date_to: '2016-31-10'
       })
       .expect(400);
 
@@ -216,7 +216,7 @@ describe('Get /rates api: validation check', function () {
         origin: 'CNSGH',
         destination: 'north_europe_main',
         date_from: '2016-01-01',
-        date_to: '2015-01-10',
+        date_to: '2015-01-10'
       })
       .expect(400);
 
@@ -235,7 +235,7 @@ describe('Get /rates_null api: validation check', function () {
       .query({
         destination: 'north_europe_main',
         date_from: '2016-01-01',
-        date_to: '2016-01-10',
+        date_to: '2016-01-10'
       })
       .expect(400);
 
@@ -252,7 +252,7 @@ describe('Get /rates_null api: validation check', function () {
       .query({
         origin: 'CNSGH',
         date_from: '2016-01-01',
-        date_to: '2016-01-10',
+        date_to: '2016-01-10'
       })
       .expect(400);
 
@@ -269,7 +269,7 @@ describe('Get /rates_null api: validation check', function () {
       .query({
         origin: 'CNSGH',
         destination: 'north_europe_main',
-        date_to: '2016-01-10',
+        date_to: '2016-01-10'
       })
       .expect(400);
 
@@ -286,7 +286,7 @@ describe('Get /rates_null api: validation check', function () {
       .query({
         origin: 'CNSGH',
         destination: 'north_europe_main',
-        date_from: '2016-01-01',
+        date_from: '2016-01-01'
       })
       .expect(400);
 
@@ -304,7 +304,7 @@ describe('Get /rates_null api: validation check', function () {
         origin: 'CNSGH',
         destination: 'north_europe_main',
         date_from: '2016-31-01',
-        date_to: '2016-01-10',
+        date_to: '2016-01-10'
       })
       .expect(400);
 
@@ -322,7 +322,7 @@ describe('Get /rates_null api: validation check', function () {
         origin: 'CNSGH',
         destination: 'north_europe_main',
         date_from: '2016-01-01',
-        date_to: '2016-31-10',
+        date_to: '2016-31-10'
       })
       .expect(400);
 
@@ -340,7 +340,7 @@ describe('Get /rates_null api: validation check', function () {
         origin: 'CNSGH',
         destination: 'north_europe_main',
         date_from: '2016-01-01',
-        date_to: '2015-01-10',
+        date_to: '2015-01-10'
       })
       .expect(400);
 
@@ -361,7 +361,7 @@ describe('Post /rates api: validation check', function () {
         date_from: '2020-01-01',
         date_to: '2020-01-10',
         price: '250',
-        currency: 'AFN',
+        currency: 'AFN'
       })
       .expect(400);
 
@@ -380,7 +380,7 @@ describe('Post /rates api: validation check', function () {
         date_from: '2020-01-01',
         date_to: '2020-01-10',
         price: '250',
-        currency: 'AFN',
+        currency: 'AFN'
       })
       .expect(400);
 
@@ -399,7 +399,7 @@ describe('Post /rates api: validation check', function () {
         destination_code: 'GBSOU',
         date_to: '2020-01-10',
         price: '250',
-        currency: 'AFN',
+        currency: 'AFN'
       })
       .expect(400);
 
@@ -418,7 +418,7 @@ describe('Post /rates api: validation check', function () {
         destination_code: 'GBSOU',
         date_from: '2020-01-01',
         price: '250',
-        currency: 'AFN',
+        currency: 'AFN'
       })
       .expect(400);
 
@@ -437,7 +437,7 @@ describe('Post /rates api: validation check', function () {
         destination_code: 'GBSOU',
         date_from: '2020-01-01',
         date_to: '2020-01-10',
-        currency: 'AFN',
+        currency: 'AFN'
       })
       .expect(400);
 
@@ -456,7 +456,7 @@ describe('Post /rates api: validation check', function () {
         destination_code: 'GBSOU',
         date_from: '2020-01-01',
         date_to: '2020-01-10',
-        price: '250',
+        price: '250'
       })
       .expect(400);
 
@@ -476,7 +476,7 @@ describe('Post /rates api: validation check', function () {
         date_from: '2020-01-01',
         date_to: '2020-01-10',
         price: '250',
-        currency: 'ABCD',
+        currency: 'ABCD'
       })
       .expect(400);
 
@@ -496,7 +496,7 @@ describe('Post /rates api: validation check', function () {
         date_from: '2020-01-01',
         date_to: '2020-01-10',
         price: '1',
-        currency: 'USD',
+        currency: 'USD'
       })
       .expect(400);
 

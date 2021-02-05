@@ -9,7 +9,7 @@ exports.getRates = async (req, _res, next) => {
   if (error) {
     throw createHttpError(
       400,
-      `Validation error: ${error.details.map((x) => x.message).join(', ')}`
+      `Validation error: ${error.details.map(x => x.message).join(', ')}`
     );
   } else {
     req.query = value;
@@ -23,7 +23,7 @@ exports.postRate = async (req, _res, next) => {
   if (error) {
     throw createHttpError(
       400,
-      `Validation error: ${error.details.map((x) => x.message).join(', ')}`
+      `Validation error: ${error.details.map(x => x.message).join(', ')}`
     );
   } else {
     req.body = value;

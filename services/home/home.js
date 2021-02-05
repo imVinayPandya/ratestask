@@ -7,7 +7,7 @@ exports.homeRoute = (_req, res) =>
 /* Health check */
 exports.healthCheckRoute = async (_req, res) => {
   const {
-    rows: [{ now = null }],
+    rows: [{ now = null }]
   } = await db.query('SELECT NOW()');
 
   return res.status(200).send({ db: now });
