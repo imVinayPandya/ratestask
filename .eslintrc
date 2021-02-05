@@ -3,6 +3,9 @@
       "airbnb",
       "prettier"
     ],
+    "plugins": [
+      "prettier"
+    ],
     "root": true,
     "parser": "babel-eslint",
     "env": {
@@ -13,6 +16,7 @@
       "sourceType": "module"
     },
     "rules": {
+      "prettier/prettier": "error",
       "no-underscore-dangle": 0,
       "no-unused-vars": [
         2,

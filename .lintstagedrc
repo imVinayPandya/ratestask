@@ -1,5 +1,8 @@
 {
   "*.(js|json)": [
     "prettier --write"
+  ],
+  "(docker|node_modules|public)/**/*.(js|jsx|ts|tsx)": [
+    "eslint . --ext js,jsx,ts,tsx --no-ignore --max-warnings 0"
   ]
 }

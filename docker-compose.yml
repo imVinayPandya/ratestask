@@ -1,0 +1,37 @@
+version: '3.5'
+
+services:
+  db:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.DB
+    container_name: ratestask-db
+    ports:
+      - '5432:5432'
+    environment:
+      - 'POSTGRES_PASSWORD=ratestask'
+      - 'POSTGRES_USER=postgres'
+    # volumes:
+    #   - ${DB_LOCAL_DATA_DIR}:/var/lib/postgresql/data
+    networks:
+      - xeneta-network
+
+  api:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    container_name: ratestask-api
+    ports:
+      - '8000:8000'
+    environment:
+      - 'DB_HOST=ratestask-db'
+    # volumes:
+    #   - ./:/app
+    networks:
+      - xeneta-network
+    depends_on:
+      - db
+
+networks:
+  xeneta-network:
+    driver: bridge

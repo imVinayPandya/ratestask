@@ -1,11 +1,14 @@
 const path = require('path');
+const request = require('supertest');
+const { describe, expect, test } = require('@jest/globals');
+
 const envPath = path.join(__dirname, '..', '..', '..', '.env');
+
 require('dotenv-safe').config({ path: envPath });
 
-const request = require('supertest');
 const app = require('../../../app');
 
-describe('Health check api', function () {
+describe('Health check api', () => {
   test('Server is running', async () => {
     const res = await request(app).get('/').expect(200);
     const baseApi = res.text === 'Abandon all hope, ye who enter here.';
@@ -14,7 +17,7 @@ describe('Health check api', function () {
 
   test('Check database status', async () => {
     const res = await request(app).get('/health-check').expect(200);
-    expect(res.body.hasOwnProperty('db')).toBeTruthy();
+    expect(Object.prototype.hasOwnProperty.call(res.body, 'db')).toBeTruthy();
     expect(!!res.body.db).toBeTruthy();
   });
 });

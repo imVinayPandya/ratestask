@@ -5,8 +5,8 @@
 const db = require('../utils/db');
 const logger = require('../utils/logger');
 
-const dbInit = async () => {
-  return db
+const dbInit = async () =>
+  db
     .query(
       `
         create or replace function get_all_port (value text) 
@@ -46,7 +46,6 @@ const dbInit = async () => {
       logger.error(error);
       process.exit(1);
     });
-};
 
 (async () => {
   await dbInit().then(() => logger.info('dbInit() success'));

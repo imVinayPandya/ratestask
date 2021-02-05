@@ -1,11 +1,14 @@
 const path = require('path');
+const request = require('supertest');
+const { describe, expect, test } = require('@jest/globals');
+
 const envPath = path.join(__dirname, '..', '..', '..', '.env');
+
 require('dotenv-safe').config({ path: envPath });
 
-const request = require('supertest');
 const app = require('../../../app');
 
-describe('Rates api: success', function () {
+describe('Rates api: success', () => {
   test('Get /rates', async () => {
     const res = await request(app)
       .get('/rates')
@@ -74,7 +77,7 @@ describe('Rates api: success', function () {
   });
 });
 
-describe('Get /rates api: With no records in response', function () {
+describe('Get /rates api: With no records in response', () => {
   test('Get /rates: No records', async () => {
     const res = await request(app)
       .get('/rates')
@@ -104,7 +107,7 @@ describe('Get /rates api: With no records in response', function () {
   });
 });
 
-describe('Get /rates api: validation check', function () {
+describe('Get /rates api: validation check', () => {
   test('Get /rates: origin required field', async () => {
     const res = await request(app)
       .get('/rates')
@@ -228,7 +231,7 @@ describe('Get /rates api: validation check', function () {
   });
 });
 
-describe('Get /rates_null api: validation check', function () {
+describe('Get /rates_null api: validation check', () => {
   test('Get /rates_null: origin required field', async () => {
     const res = await request(app)
       .get('/rates_null')
@@ -352,7 +355,7 @@ describe('Get /rates_null api: validation check', function () {
   });
 });
 
-describe('Post /rates api: validation check', function () {
+describe('Post /rates api: validation check', () => {
   test('Post /rates origin_code required field', async () => {
     const res = await request(app)
       .post('/rates')
