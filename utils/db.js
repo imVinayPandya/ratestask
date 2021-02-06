@@ -1,3 +1,6 @@
+/**
+ * Database connection and pooling
+ */
 const Pool = require('pg-pool');
 const config = require('config');
 

@@ -12,11 +12,11 @@ router.get('/health-check', homeRouter.healthCheckRoute);
 
 /** Rate routes */
 router.get('/rates', validation.getRates, rateRouter.getAveragePrice);
+router.post('/rates', validation.postRate, rateRouter.insertRates);
 router.get(
   '/rates_null',
   [validation.getRates, middleware.rateNullRequest],
   rateRouter.getAveragePrice
 );
-router.post('/rates', validation.postRate, rateRouter.insertRates);
 
 module.exports = router;

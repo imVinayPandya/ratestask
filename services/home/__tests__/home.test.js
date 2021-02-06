@@ -21,8 +21,3 @@ describe('Health check api', () => {
     expect(!!res.body.db).toBeTruthy();
   });
 });
-
-// // To void jest open handle error
-// afterAll(async () => {
-//   await new Promise((resolve) => setTimeout(() => resolve(), 5000));
-// });

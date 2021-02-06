@@ -1,5 +1,16 @@
+/**
+ * DB queries for rate controller
+ */
 const sql = require('sql-template-strings');
 
+/**
+ * Insert series of rates in database using DateFrom to DateTo
+ * @param {String} originCode Origin Port Code
+ * @param {String} destinationCode Destination Port Code
+ * @param {Number} price Price of shipping
+ * @param {String} dateFrom From Date in YYYY-MM-DD format
+ * @param {String} dateTo To Date in YYYY-MM-DD format
+ */
 exports.insertRates = (originCode, destinationCode, price, dateFrom, dateTo) =>
   // @NOTE: Are we storing duplicate values in this table for same day and same price?
   // if no then we can create unique key and we can user UPSERT instead of INSERT
@@ -17,6 +28,14 @@ exports.insertRates = (originCode, destinationCode, price, dateFrom, dateTo) =>
     returning *
   `;
 
+/**
+ *
+ * @param {String} origin Origin code or Origin slug
+ * @param {String} destination Destination code or Destination slug
+ * @param {String} dateFrom From Date in YYYY-MM-DD format
+ * @param {String} dateTo To Date in YYYY-MM-DD format
+ * @param {Boolean} is_null If you want to return null for days on which there are less than 3 prices in total for average_price
+ */
 exports.getAveragePrice = (
   origin,
   destination,

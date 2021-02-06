@@ -1,5 +1,9 @@
+/**
+ * API Validation Schema
+ */
 const Joi = require('joi').extend(require('@joi/date'));
 
+// schema for GET /rates and GET /rates_null
 const getRateSchema = {
   origin: Joi.string().trim().required().messages({
     'string.base': 'Origin must be string',
@@ -27,6 +31,7 @@ const getRateSchema = {
   })
 };
 
+// schema for POST /rates
 const postRateSchema = {
   origin_code: getRateSchema.origin,
   destination_code: getRateSchema.destination,

@@ -1,10 +1,21 @@
+/**
+ * Api Route Controller
+ */
 const db = require('../../utils/db');
 
-/* home page. */
+/**
+ * Home page
+ * @method GET
+ * @route /
+ */
 exports.homeRoute = (_req, res) =>
   res.status(200).send('Abandon all hope, ye who enter here.');
 
-/* Health check */
+/**
+ * Health check
+ * @method GET
+ * @route /health-check
+ */
 exports.healthCheckRoute = async (_req, res) => {
   const {
     rows: [{ now = null }]

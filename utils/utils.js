@@ -1,3 +1,6 @@
+/**
+ * Utility functions
+ */
 const Joi = require('joi').extend(require('@joi/date'));
 const got = require('got');
 const config = require('config');
