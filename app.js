@@ -3,7 +3,9 @@ const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const uuid = require('uuid');
 const config = require('config');
+const helmet = require('helmet');
 const requestIp = require('request-ip');
+const compression = require('compression');
 const createHttpError = require('http-errors');
 
 const logger = require('./utils/logger');
@@ -19,6 +21,8 @@ app.use((req, _res, next) => {
   req.id = uuid.v4();
   next();
 });
+app.use(compression());
+app.use(helmet());
 
 morgan.token('id', req => req.id);
 morgan.token('ip', req => requestIp.getClientIp(req));

@@ -1,3 +1,8 @@
+- If you are looking for "What I did in this task?", than please look into [WHAT_I_DID.md](WHAT_I_DID.md)
+- Best practice says that ".env file and secret credential should not be commited to git" but i have commit .env.example file with some initial value so it will be very easy for you to run this solution.
+
+# Setup Instructions
+
 ## Prerequisite
 
 1. Node.js (LTS version recommended)
@@ -20,11 +25,11 @@ First open root directory of this project in terminal and follow below steps to 
 
    - To build docker image
 
-     `docker build -t ratestask:db -f ./docker/Dockerfile.DB ./docker/`
+     `docker build -t ratestask:db -f ./docker/Dockerfile.DB .`
 
    - To run PostgreSQL database
 
-     `docker run -p 0.0.0.0:5432:5432 --name ratestask-db ratestask:db`
+     `docker run -p 5432:5432 --name ratestask-db ratestask:db`
 
    - Access database using psql
 
@@ -38,7 +43,7 @@ First open root directory of this project in terminal and follow below steps to 
    - `cp .env.example .env`
    - don't forget to change its values, if needed.
 
-Note: - for currency exachange OPEN_EXCH_API_ENDPOINT and OPEN_EXCH_APP_ID values I am pushing to github, so you no need to create your own app id.
+Note: for currency exachange OPEN_EXCH_API_ENDPOINT and OPEN_EXCH_APP_ID values I am pushing to github, so you no need to create your own app id.
 
 2. After starting database, start Node.js server
 
@@ -61,3 +66,19 @@ First open root directory of this project in terminal and follow below steps to 
 
 3. Now you can access api on PORT which you have defined in `.env` file
    Example: http://localhost:8000/
+
+## How to run test case and linting?
+
+### GOTCHA:
+
+- Before running test case, you have to run node js server along with database. Because my code is creating One DB function and Database indexing before starting API server. Without that function test cases will fail. I know this is not the way..... :( I want to use original db file which I got from your task repo and Latter on when you start Node.js server first thing it will do is that Create Indexes and DB function, so you can run my code with latest database file.
+- Integration test required database (In future we can run test with temporary database, using postgresql's docker container)
+
+I have written Integration Test Cases for API and Eslint, Prettier for code formatting.
+
+You can run `yarn test`, it will run test case as well as linting.
+
+- If you just want to run test case independently run `yarn test:int`
+- If you want to run linting independently run
+  - `yarn test:prettier` for prettier
+  - `yarn lint` for Eslint

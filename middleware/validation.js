@@ -1,3 +1,6 @@
+/**
+ * Joi API validation using schema
+ */
 const createHttpError = require('http-errors');
 
 const { getRateSchema, postRateSchema } = require('../schema/rate');

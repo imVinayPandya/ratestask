@@ -7,7 +7,7 @@ For batch processing I can think of two solution
 
 I assume that user will upload csv file for thousands of new prices.
 
-## 1. In cloud based solution
+## 1. Cloud based solution
 
 1. Our API server will stream/upload CSV file to s3 bucket.
 2. After that API server will trigger one lambda function, or may be s3 bucket can trigger lambda function.
@@ -42,5 +42,8 @@ I want to use Node.js Stream here, it very powerful tool of Node.js
 - We can deploy this solution to any cloud service like AWS, Google, Digital Ocean etc
 - You can also spawn new process in Node.js so it will not block main thread, it is not neccessory but you can do it if you want.
 - In Node.js you can create longer running process for this task
+- Using Node.js you can use RabbitMQ, redis-queue as messaging queue service
 
 ### Cons
+
+- We need to scale application manually, or may be we can use AWS load balancer for auto scaling
