@@ -2,6 +2,10 @@
   "name": "xeneta-ratetask",
   "version": "0.0.0",
   "private": true,
+  "author": {
+    "name": "Vinay Pandya",
+    "url": "https://www.linkedin.com/in/imvinaypandya/"
+  },
   "scripts": {
     "start": "run-s start:dev",
     "start:prod": "node ./bin/www",

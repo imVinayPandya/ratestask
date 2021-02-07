@@ -82,3 +82,34 @@ You can run `yarn test`, it will run test case as well as linting.
 - If you want to run linting independently run
   - `yarn test:prettier` for prettier
   - `yarn lint` for Eslint
+
+## CURL commands for testing api
+
+### GET /rates_null
+
+```sh
+curl --location --request GET 'http://127.0.0.1:8000/rates_null?date_from=2016-01-01&date_to=2016-01-10&origin=CNSGH&destination=north_europe_main'
+
+```
+
+### GET /rates
+
+```sh
+curl --location --request GET 'http://127.0.0.1:8000/rates_null?date_from=2016-01-01&date_to=2016-01-10&origin=CNSGH&destination=north_europe_main'
+
+```
+
+### POST /rates
+
+```sh
+curl --location --request POST 'http://127.0.0.1:8000/rates' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "origin_code": "cnsgh",
+    "destination_code": "gbsou",
+    "date_from": "2020-01-01",
+    "date_to": "2020-01-10",
+    "price": "10",
+    "currency": "USD"
+}'
+```

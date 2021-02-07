@@ -67,11 +67,12 @@ const dbInit = async () => {
   await getAllPortDbFunc();
 };
 
-const onFailedAttempt = error =>
+const onFailedAttempt = error => {
   logger.warn(
-    `DBInit() Attempt ${error.attemptNumber} failed. There are ${error.retriesLeft} retries left.`
+    `dbInit() Attempt ${error.attemptNumber} failed. There are ${error.retriesLeft} retries left.`
   );
-
+  logger.error(error);
+};
 (async () => {
   // if there is any error while running dbInit() script, we will retry to run it for 15 times/seconds.
   // possible gotcha for docker-compose: ref https://docs.docker.com/compose/startup-order/
